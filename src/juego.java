@@ -1,24 +1,28 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 public class juego extends JFrame {
+    Dado dado1,dado2;
+    Random r;
+    JLabel LblDado1, LblDado2;
     public juego () 
     {
         setSize(500,400);
         setTitle("Juego De Dados");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        JLabel LblDado1 = new JLabel();
+        LblDado1 = new JLabel();
         String ArchivoImagen = "/Imagenes/1.jpg";
         ImageIcon imgDado = new ImageIcon(getClass().getResource(ArchivoImagen));
         LblDado1.setIcon(imgDado);
         LblDado1.setBounds(10,10,imgDado.getIconWidth(),imgDado.getIconHeight());
         add(LblDado1);
-        JLabel LblDado2 = new JLabel();
+        LblDado2 = new JLabel();
         ArchivoImagen = "/Imagenes/2.jpg";
         imgDado = new ImageIcon(getClass().getResource(ArchivoImagen));
         LblDado2.setIcon(imgDado);
@@ -57,8 +61,26 @@ public class juego extends JFrame {
         JButton btnLanzar = new JButton("Lanzar");
         btnLanzar.setBounds(10, 60 + imgDado.getIconHeight(), 100, 25);
         add(btnLanzar);
+        //eventos
+        btnIniciar.addActionListener( e -> {
+            iniciar();
+        });
+        btnLanzar.addActionListener( e -> {
+            lanzar();
+        });
 
 
+
+
+    }
+    private void iniciar () {
+
+    }
+    private void lanzar (){
+        dado1.Lanzar(r);
+        dado1.Mostrar(LblDado1);
+        dado2.Lanzar(r);
+        dado2.Mostrar(LblDado2);
 
 
     }
