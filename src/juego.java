@@ -7,9 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 public class juego extends JFrame {
-    Dado dado1,dado2;
-    Random r;
-    JLabel LblDado1, LblDado2;
+    private Dado dado1,dado2;
+    private Random r;
+    private JLabel LblDado1, LblDado2,lblCenas,lblLanzamientos;
+    private int cenas,lanzamientos;
     public juego () 
     {
         setSize(500,400);
@@ -32,8 +33,8 @@ public class juego extends JFrame {
         lblTituloLanzamientos.setBounds(30 + 2 * imgDado.getIconWidth(), 10, 90, 25);
         lblTituloLanzamientos.setHorizontalAlignment(JLabel.CENTER);
         add(lblTituloLanzamientos);
-        JLabel lblLanzamientos = new JLabel("0");
-        lblLanzamientos.setBounds(30+2*imgDado.getIconWidth(),40,90,100);
+        lblLanzamientos= new JLabel("0");
+        lblLanzamientos.setBounds(30+2*imgDado.getIconWidth(),40,100,100);
         lblLanzamientos.setFont(new Font("Tahoma",1,72));
         lblLanzamientos.setHorizontalAlignment(JLabel.RIGHT);
         lblLanzamientos.setBackground(new Color(0,0,0));
@@ -45,7 +46,7 @@ public class juego extends JFrame {
         lblTituloCenas.setHorizontalAlignment(JLabel.CENTER);
         add(lblTituloCenas);
 
-        JLabel lblCenas = new JLabel("0");
+        lblCenas= new JLabel("0");
         lblCenas.setBounds(140 + 2 * imgDado.getIconWidth(), 40, 90, 100);
         lblCenas.setFont(new Font("Tahoma", 1, 72));
         lblCenas.setHorizontalAlignment(JLabel.RIGHT);
@@ -68,19 +69,36 @@ public class juego extends JFrame {
         btnLanzar.addActionListener( e -> {
             lanzar();
         });
+        dado1 = new Dado();
+        dado2 = new Dado();
+        r=new Random();
 
 
 
 
     }
     private void iniciar () {
+        lanzamientos=0;
+        cenas=0;
+        lblLanzamientos.setText(String.valueOf(lanzamientos));
+        lblCenas.setText(String.valueOf(cenas));
+        
 
     }
+
     private void lanzar (){
         dado1.Lanzar(r);
         dado1.Mostrar(LblDado1);
         dado2.Lanzar(r);
         dado2.Mostrar(LblDado2);
+        lanzamientos++;
+        lblLanzamientos.setText(String.valueOf(lanzamientos));
+        if (dado1.getNumero()+dado2.getNumero()>=11)
+        {
+            cenas++;
+            lblCenas.setText(String.valueOf(cenas));
+        }
+        
 
 
     }

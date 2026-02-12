@@ -15,7 +15,8 @@ public class Dado {
         String ArchivoImagen = "/Imagenes/"+numero+".jpg";
         ImageIcon imgDado = new ImageIcon(getClass().getResource(ArchivoImagen));
         lbldado.setIcon(imgDado);
-
+        
+       
 
     }
     public int getNumero(){
